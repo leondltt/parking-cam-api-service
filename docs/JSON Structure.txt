@@ -1,0 +1,54 @@
+{"AlarmInfoPlate":
+	{
+		"channel":12345,
+		"deviceName":"Entrada_1",
+		"ipaddr":"192.168.15.20",
+		"result":
+			{
+				"PlateResult":
+					{
+						"bright":0,
+						"carBright":0,
+						"carColor":0,
+						"colorType":3,
+						"colorValue":0,
+						"confidence":93,
+						"direction":1,
+						"imageFile":".............Foto em base 64 ...........",
+						"imageFileLen":235149,
+						"imageFragmentFile":".............Foto da placa em Base64..........",
+						"imageFragmentFileLen":3603,
+						"license":"BRA2O21",
+						"location":
+							{
+								"RECT":
+									{
+										"top":751,
+										"left":630,
+										"right":844,
+										"bottom":650
+									}
+							},
+						"timeStamp":
+							{
+								"Timeval":
+									{
+										"sec":1585821496,
+										"usec":661814
+									}
+							},
+						"radarSpeed":
+							{"Speed":
+									{
+									"PerHour":50,
+									"Direction":0
+									}
+							}
+						"timeUsed":0,
+						"triggerType":2,
+						"type":1
+					}
+			},
+		"serialno":"acc010428e1a3730"
+	}
+}
