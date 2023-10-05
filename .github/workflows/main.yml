@@ -31,4 +31,4 @@ jobs:
       run: |
         git remote set-url origin ssh://leonardo.lauretti@santodigital.com.br@source.developers.google.com:2022/p/apostaganha-staging/r/test-cloud-build
         git config http.postBuffer 524288000
-        git push --mirror
+        git push -u main
