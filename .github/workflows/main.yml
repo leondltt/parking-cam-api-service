@@ -41,4 +41,4 @@ jobs:
         cd dest
         git add .
         git commit -m "Sincronização a partir da branch main"
-        git push origin main
+        git push -u origin main
