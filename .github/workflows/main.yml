@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main # Substitua pelo nome da branch que deseja observar
-permissions: 
-  contents: write
 
 jobs:
   mirror-to-remote:
@@ -30,7 +28,17 @@ jobs:
         ssh-keyscan -p 2022 -H source.developers.google.com >> ~/.ssh/known_hosts
         chmod 644 ~/.ssh/known_hosts
 
-    # ssh://leonardo.lauretti@santodigital.com.br@source.developers.google.com:2022/p/apostaganha-staging/r/test-cloud-build
-    - name: Push to Remote
+    - name: Clonar repositório de destino
       run: |
-        git push --mirror ssh://leonardo.lauretti@santodigital.com.br@source.developers.google.com:2022/p/apostaganha-staging/r/test-cloud-build
+        git clone ssh://leonardo.lauretti@santodigital.com.br@source.developers.google.com:2022/p/apostaganha-staging/r/test-cloud-build dest
+        cd dest
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+
+    - name: Sincronizar repositório
+      run: |
+        rsync -av --exclude=".git" ../ dest/
+        cd dest
+        git add .
+        git commit -m "Sincronização a partir da branch main"
+        git push origin main
