@@ -32,7 +32,7 @@ jobs:
         cd dest
         git config user.name "GitHub Actions"
         git config user.email "actions@github.com"
-        git checkout main
+        git checkout main 2>/dev/null || git checkout -b main
 
     - name: Sincronizar repositório
       run: |
