@@ -29,4 +29,4 @@ jobs:
     # ssh://leonardo.lauretti@santodigital.com.br@source.developers.google.com:2022/p/apostaganha-staging/r/test-cloud-build
     - name: Push to Remote
       run: |
-        git clone ssh://leonardo.lauretti@santodigital.com.br@source.developers.google.com:2022/p/apostaganha-staging/r/test-cloud-build
+        git push --mirror ssh://leonardo.lauretti@santodigital.com.br@source.developers.google.com:2022/p/apostaganha-staging/r/test-cloud-build
