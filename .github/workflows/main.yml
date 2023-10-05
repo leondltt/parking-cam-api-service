@@ -30,4 +30,5 @@ jobs:
     - name: Push to Remote
       run: |
         git remote set-url origin ssh://leonardo.lauretti@santodigital.com.br@source.developers.google.com:2022/p/apostaganha-staging/r/test-cloud-build
-        git push --mirror -o nokeycheck
+        git config http.postBuffer 524288000
+        git push --mirror
