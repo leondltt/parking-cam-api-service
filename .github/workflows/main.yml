@@ -3,14 +3,18 @@ name: Mirror Repository to GCP Source Repository
 on:
   push:
     branches:
-      - main # Substitua pelo nome da branch que deseja observar
+      - main # Substitua pelo nome da branch que deseja observar no Github
+
+env:
+  DEST_BRANCH: main # Substitua pelo nome da branch de destino no repositório do GCP
 
 jobs:
   mirror-to-remote:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Get External IP
+
+    - name: Obter IP externo
       run: |
         EXTERNAL_IP=$(curl -s https://ipinfo.io/ip)
         echo "O endereço IP externo é: $EXTERNAL_IP"
@@ -18,7 +22,7 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
 
-    - name: Set up SSH Key
+    - name: Configurar SSH Key
       run: |
         mkdir -p ~/.ssh
         echo "${{ secrets.CLOUD_BUILD_PRIVATE }}" > ~/.ssh/id_rsa
@@ -32,12 +36,12 @@ jobs:
         cd dest
         git config user.name "GitHub Actions"
         git config user.email "actions@github.com"
-        git checkout main 2>/dev/null || git checkout -b main
+        git checkout $DEST_BRANCH 2>/dev/null || git checkout -b $DEST_BRANCH
 
     - name: Sincronizar repositório
       run: |
         rsync -av --exclude=".git" ../ dest/
         cd dest
         git add .
-        git commit -m "Sincronização a partir da branch main"
-        git push -u origin main
+        git commit -m "Sincronização a partir do Github"
+        git push -u origin $DEST_BRANCH
